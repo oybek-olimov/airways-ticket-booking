@@ -5,6 +5,7 @@ import org.example.airwaysticketbooking.DomainDriverDesign.securityConfig.JwtRes
 import org.example.airwaysticketbooking.DomainDriverDesign.securityConfig.JwtUtil;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -16,6 +17,7 @@ public class UserServiceImpl implements UserService {
     private final UserProfileRepository userProfileRepository;
 
     @Override
+    @Transactional
     public String registerUser(UserRegisterDTO userRegisterDTO) {
         if (userRepository.existsByEmail(userRegisterDTO.getEmail())) {
             throw new IllegalArgumentException("Email already exists");
@@ -39,6 +41,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public JwtResponseDTO loginUser(UserLoginDTO userLoginDTO) {
         AuthUser authUser = userRepository.findByEmail(userLoginDTO.getEmail())
                 .orElseThrow(() -> new IllegalArgumentException("Invalid email or password"));

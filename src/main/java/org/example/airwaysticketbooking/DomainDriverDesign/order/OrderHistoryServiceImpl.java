@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.airwaysticketbooking.DomainDriverDesign.ticket.Ticket;
 import org.example.airwaysticketbooking.DomainDriverDesign.ticket.TicketRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,6 +17,7 @@ public class OrderHistoryServiceImpl implements OrderHistoryService {
     private final TicketRepository ticketRepository;
 
     @Override
+    @Transactional
     public List<OrderHistoryDTO> getOrderHistory(Long userId) {
         List<Ticket> tickets = ticketRepository.findAll().stream()
                 .filter(ticket -> ticket.getPassengerEmail().equalsIgnoreCase(userId.toString()))

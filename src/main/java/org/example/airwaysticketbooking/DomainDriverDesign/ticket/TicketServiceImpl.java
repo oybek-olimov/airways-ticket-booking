@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.airwaysticketbooking.DomainDriverDesign.flight.Flight;
 import org.example.airwaysticketbooking.DomainDriverDesign.flight.FlightRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -13,6 +14,7 @@ public class TicketServiceImpl implements TicketService {
     private final FlightRepository flightRepository;
 
     @Override
+    @Transactional
     public Ticket bookTicket(TicketDTO ticketDTO) {
         Flight flight = flightRepository.findById(ticketDTO.getFlightId())
                 .orElseThrow(() -> new IllegalArgumentException("Flight not found"));
