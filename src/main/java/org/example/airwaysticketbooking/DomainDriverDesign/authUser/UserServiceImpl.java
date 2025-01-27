@@ -1,6 +1,8 @@
-package org.example.airwaysticketbooking.domainDriverDesign.authUser;
+package org.example.airwaysticketbooking.DomainDriverDesign.authUser;
 
 import lombok.RequiredArgsConstructor;
+import org.example.airwaysticketbooking.DomainDriverDesign.securityConfig.JwtResponseDTO;
+import org.example.airwaysticketbooking.DomainDriverDesign.securityConfig.JwtUtil;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

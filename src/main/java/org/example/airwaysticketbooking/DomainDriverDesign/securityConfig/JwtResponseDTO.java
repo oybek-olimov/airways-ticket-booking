@@ -1,4 +1,4 @@
-package org.example.airwaysticketbooking.domainDriverDesign.authUser;
+package org.example.airwaysticketbooking.DomainDriverDesign.securityConfig;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

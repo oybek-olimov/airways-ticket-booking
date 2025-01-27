@@ -1,7 +1,8 @@
-package org.example.airwaysticketbooking.domainDriverDesign.authUser;
+package org.example.airwaysticketbooking.DomainDriverDesign.authUser;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.example.airwaysticketbooking.DomainDriverDesign.securityConfig.JwtResponseDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

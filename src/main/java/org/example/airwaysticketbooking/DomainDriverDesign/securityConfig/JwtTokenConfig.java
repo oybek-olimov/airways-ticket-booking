@@ -1,4 +1,4 @@
-package org.example.airwaysticketbooking.domainDriverDesign.authUser;
+package org.example.airwaysticketbooking.DomainDriverDesign.securityConfig;
 
 
 import io.jsonwebtoken.io.Decoders;
@@ -6,8 +6,6 @@ import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.security.Key;
 
@@ -21,8 +19,4 @@ public class JwtTokenConfig {
         return Keys.hmacShaKeyFor(Decoders.BASE64URL.decode(secretKey));
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
 }

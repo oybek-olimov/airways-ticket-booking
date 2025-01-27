@@ -1,6 +1,7 @@
-package org.example.airwaysticketbooking.domainDriverDesign.authUser;
+package org.example.airwaysticketbooking.DomainDriverDesign.authUser;
 
 import jakarta.validation.Valid;
+import org.example.airwaysticketbooking.DomainDriverDesign.securityConfig.JwtResponseDTO;
 
 public interface UserService {
 

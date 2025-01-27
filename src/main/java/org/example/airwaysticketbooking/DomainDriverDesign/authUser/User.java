@@ -1,4 +1,4 @@
-package org.example.airwaysticketbooking.domainDriverDesign.authUser;
+package org.example.airwaysticketbooking.DomainDriverDesign.authUser;
 
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
