@@ -2,7 +2,7 @@ package org.example.airwaysticketbooking.DomainDriverDesign.securityConfig;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import org.example.airwaysticketbooking.DomainDriverDesign.generic.AppErrorDTO;
+import org.example.airwaysticketbooking.DomainDriverDesign.generic.ErrorResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -88,10 +88,10 @@ public class SecurityConfig {
             String errorPath = request.getRequestURI();
             String errorMessage = authException.getMessage();
             int errorCode = 401;
-            AppErrorDTO appErrorDTO = new AppErrorDTO(errorMessage, errorPath, errorCode);
+            ErrorResponse errorResponse = new ErrorResponse(errorMessage, errorPath, errorCode);
             response.setStatus(errorCode);
             OutputStream outputStream = response.getOutputStream();
-            objectMapper.writeValue(outputStream, appErrorDTO);
+            objectMapper.writeValue(outputStream, errorResponse);
         };
     }
 
@@ -102,9 +102,9 @@ public class SecurityConfig {
             String errorPath = request.getRequestURI();
             String errorMessage = accessDeniedException.getMessage();
             int errorCode = 403;
-            AppErrorDTO appErrorDTO = new AppErrorDTO(errorMessage, errorPath, errorCode);
+            ErrorResponse errorResponse = new ErrorResponse(errorMessage, errorPath, errorCode);
             OutputStream outputStream = response.getOutputStream();
-            objectMapper.writeValue(outputStream, appErrorDTO);
+            objectMapper.writeValue(outputStream, errorResponse);
         });
     }
 }
