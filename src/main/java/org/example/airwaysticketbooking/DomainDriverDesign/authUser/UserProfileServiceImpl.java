@@ -1,13 +1,8 @@
 package org.example.airwaysticketbooking.DomainDriverDesign.authUser;
 
 import lombok.RequiredArgsConstructor;
-import org.example.airwaysticketbooking.DomainDriverDesign.order.OrderHistoryDTO;
-import org.example.airwaysticketbooking.DomainDriverDesign.ticket.Ticket;
-import org.example.airwaysticketbooking.DomainDriverDesign.ticket.TicketRepository;
+import org.example.airwaysticketbooking.DomainDriverDesign.securityConfig.SessionUser;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 
 @Service
@@ -16,20 +11,24 @@ public class UserProfileServiceImpl implements UserProfileService {
 
     private final UserProfileRepository userProfileRepository;
     private final UserRepository userRepository;
+    private final SessionUser sessionUser;
+
 
     @Override
-    public UserProfile getProfile(Long userId) {
-        return userProfileRepository.findByUserId(userId);
+    public UserProfile getProfile() {
+        Long userId = sessionUser.getCurrentUserId();
+        return userProfileRepository.findByAuthUserId(userId);
     }
 
     @Override
-    public UserProfile updateProfile(Long userId, UserProfileDTO profileDTO) {
-        UserProfile profile = userProfileRepository.findByUserId(userId);
+    public UserProfile updateProfile(UserProfileDTO profileDTO) {
+        Long userId = sessionUser.getCurrentUserId();
+        UserProfile profile = userProfileRepository.findByAuthUserId(userId);
         if (profile == null) {
-            User user = userRepository.findById(userId)
+            AuthUser authUser = userRepository.findById(userId)
                     .orElseThrow(() -> new IllegalArgumentException("User not found"));
             profile = new UserProfile();
-            profile.setUser(user);
+            profile.setAuthUser(authUser);
         }
         profile.setFirstName(profileDTO.getFirstName());
         profile.setLastName(profileDTO.getLastName());

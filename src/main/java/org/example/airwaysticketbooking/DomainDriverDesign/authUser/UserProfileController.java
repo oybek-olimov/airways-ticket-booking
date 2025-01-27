@@ -17,12 +17,12 @@ public class UserProfileController {
     private final UserProfileService userProfileService;
 
     @GetMapping
-    public ResponseEntity<UserProfile> getProfile(@RequestParam Long userId) {
-        return ResponseEntity.ok(userProfileService.getProfile(userId));
+    public ResponseEntity<UserProfile> getProfile() {
+        return ResponseEntity.ok(userProfileService.getProfile());
     }
 
     @PutMapping
-    public ResponseEntity<UserProfile> updateProfile(@RequestParam Long userId, @RequestBody UserProfileDTO profileDTO) {
-        return ResponseEntity.ok(userProfileService.updateProfile(userId, profileDTO));
+    public ResponseEntity<UserProfile> updateProfile( @RequestBody UserProfileDTO profileDTO) {
+        return ResponseEntity.ok(userProfileService.updateProfile(profileDTO));
     }
 }
