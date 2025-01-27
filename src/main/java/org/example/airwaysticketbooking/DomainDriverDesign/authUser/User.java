@@ -1,4 +1,4 @@
-package org.example.airwaysticketbooking.domainDriverDesign.authUser;
+package org.example.airwaysticketbooking.DomainDriverDesign.authUser;
 
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
@@ -39,8 +39,7 @@ public class User {
     @Column(nullable = false)
     private String fullName;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
-    @Column(name = "role")
-    private Set<String> roles;
+    @Column(nullable = false)
+    private String role;
+
 }

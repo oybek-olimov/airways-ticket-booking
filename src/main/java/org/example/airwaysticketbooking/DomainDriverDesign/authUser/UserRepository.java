@@ -1,4 +1,4 @@
-package org.example.airwaysticketbooking.domainDriverDesign.authUser;
+package org.example.airwaysticketbooking.DomainDriverDesign.authUser;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
