@@ -37,8 +37,6 @@ public class AuthUser {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
-    private String fullName;
 
     @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
