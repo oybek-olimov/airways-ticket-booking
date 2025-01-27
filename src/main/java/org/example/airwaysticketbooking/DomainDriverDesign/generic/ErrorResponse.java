@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 
 @Getter
-public class AppErrorDTO {
+public class ErrorResponse {
 
     private final String errorMessage;
 
@@ -17,7 +17,7 @@ public class AppErrorDTO {
 
     private final LocalDateTime timestamp;
 
-    public AppErrorDTO(String errorMessage, String errorPath, int errorCode) {
+    public ErrorResponse(String errorMessage, String errorPath, int errorCode) {
         this.errorMessage = errorMessage;
         this.errorPath = errorPath;
         this.errorCode = errorCode;
