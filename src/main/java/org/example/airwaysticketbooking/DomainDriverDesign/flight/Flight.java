@@ -1,14 +1,10 @@
-package org.example.airwaysticketbooking.DomainDriverDesign.authUser;
+package org.example.airwaysticketbooking.DomainDriverDesign.flight;
 
-import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,7 +12,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Set;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -24,22 +20,30 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "flights")
+public class Flight {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
-    private String email;
+    @Column(nullable = false)
+    private String airline;
 
     @Column(nullable = false)
-    private String password;
+    private String departureCity;
 
     @Column(nullable = false)
-    private String fullName;
+    private String destinationCity;
 
     @Column(nullable = false)
-    private String role;
+    private LocalDateTime departureTime;
 
+    @Column(nullable = false)
+    private LocalDateTime arrivalTime;
+
+    @Column(nullable = false)
+    private int availableSeats;
+
+    @Column(nullable = false)
+    private double pricePerSeat;
 }

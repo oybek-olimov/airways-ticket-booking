@@ -15,20 +15,30 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final JwtUtil jwtUtil;
     private final PasswordEncoder passwordEncoder;
+    private final UserProfileRepository userProfileRepository;
 
     @Override
-    public void registerUser(UserRegisterDTO userRegisterDTO) {
+    public String registerUser(UserRegisterDTO userRegisterDTO) {
         if (userRepository.existsByEmail(userRegisterDTO.getEmail())) {
             throw new IllegalArgumentException("Email already exists");
         }
 
         User user = new User();
-        user.setFullName(userRegisterDTO.getFullName());
         user.setEmail(userRegisterDTO.getEmail());
         user.setPassword(passwordEncoder.encode(userRegisterDTO.getPassword()));
-        user.setRoles(Collections.singleton("USER"));
-
+        user.setRole("USER");
         userRepository.save(user);
+
+        UserProfile profile = new UserProfile();
+        profile.setUser(user);
+        profile.setFirstName(userRegisterDTO.getFirstName());
+        profile.setLastName(userRegisterDTO.getLastName());
+        profile.setPhoneNumber(userRegisterDTO.getPhoneNumber());
+        profile.setAddress(userRegisterDTO.getAddress());
+        userProfileRepository.save(profile);
+
+        return jwtUtil.generateToken(user.getEmail());
+
     }
 
     @Override

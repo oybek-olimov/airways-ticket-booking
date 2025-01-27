@@ -35,4 +35,4 @@ jwt:
 
 
 security:
-  white-list: /api/auth/**
+  white-list: /api/auth/**,/api/flights/**
