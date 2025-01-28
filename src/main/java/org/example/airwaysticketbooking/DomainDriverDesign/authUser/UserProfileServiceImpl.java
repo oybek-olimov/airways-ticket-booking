@@ -3,6 +3,7 @@ package org.example.airwaysticketbooking.DomainDriverDesign.authUser;
 import lombok.RequiredArgsConstructor;
 import org.example.airwaysticketbooking.DomainDriverDesign.securityConfig.SessionUser;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
@@ -21,6 +22,7 @@ public class UserProfileServiceImpl implements UserProfileService {
     }
 
     @Override
+    @Transactional
     public UserProfile updateProfile(UserProfileDTO profileDTO) {
         Long userId = sessionUser.getCurrentUserId();
         UserProfile profile = userProfileRepository.findByAuthUserId(userId);
