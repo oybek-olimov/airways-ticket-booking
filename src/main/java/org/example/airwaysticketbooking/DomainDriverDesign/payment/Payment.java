@@ -1,18 +1,24 @@
-package org.example.airwaysticketbooking.DomainDriverDesign.authUser;
+package org.example.airwaysticketbooking.DomainDriverDesign.payment;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.example.airwaysticketbooking.DomainDriverDesign.ticket.Ticket;
+
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -20,28 +26,23 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "user_profiles")
-public class UserProfile {
+@Table(name = "payments")
+public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private AuthUser authUser;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ticket_id", nullable = false)
+    private Ticket ticket;
 
     @Column(nullable = false)
-    private String firstName;
+    private double amount;
 
     @Column(nullable = false)
-    private String lastName;
+    private LocalDateTime paymentDate;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String phoneNumber;
-
-    @Column(nullable = false)
-    private String address;
-
-    @Column(nullable = false)
-    private String profilePicturePath;
+    private PaymentStatus status;
 }

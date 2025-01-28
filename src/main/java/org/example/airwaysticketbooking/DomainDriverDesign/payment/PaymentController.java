@@ -1,4 +1,5 @@
-package org.example.airwaysticketbooking.DomainDriverDesign.order;
+package org.example.airwaysticketbooking.DomainDriverDesign.payment;
+
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -10,14 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/orders")
+@RequestMapping("/api/payments")
 @RequiredArgsConstructor
-public class OrderHistoryController {
+public class PaymentController {
 
-    private final OrderHistoryService orderHistoryService;
+    private final PaymentService paymentService;
 
     @GetMapping
-    public ResponseEntity<List<OrderHistoryDTO>> getOrderHistory(@RequestParam Long userId) {
-        return ResponseEntity.ok(orderHistoryService.getOrderHistory(userId));
+    public ResponseEntity<List<Payment>> getUserPayments() {
+        List<Payment> payments = paymentService.getPaymentsByUserId();
+        return ResponseEntity.ok(payments);
     }
 }
