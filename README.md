@@ -32,8 +32,6 @@ This project is designed with modular architecture and uses a secure backend sys
 ### **Frameworks and Libraries**
 - **Spring Boot 3.1**: Core framework for building the application.
 - **Hibernate (JPA)**: For ORM and database interaction.
-- **MapStruct**: For mapping DTOs to Entities and vice versa.
-- **Lombok**: For reducing boilerplate code (e.g., getters, setters, constructors).
 - **Swagger**: For API documentation and testing.
 - **JWT**: For user authentication and authorization.
 - **Validator**: For validating user input.
