@@ -37,7 +37,7 @@ public class ProfilePictureController {
 
             if (resource.exists() || resource.isReadable()) {
                 return ResponseEntity.ok()
-                        .contentType(MediaType.APPLICATION_PDF)
+                        .contentType(MediaType.IMAGE_PNG)
                         .body(resource);
             } else {
                 throw new RuntimeException("Could not read the file!");
