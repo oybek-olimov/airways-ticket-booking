@@ -15,7 +15,7 @@ This project is designed with modular architecture and uses a secure backend sys
 - **Booking History**: View the user's past bookings with filtering options.
 - **Profile Management**: Users can view and update their personal profile.
 - **Authentication and Authorization**:
-  - Registration and login using JWT (Basic and Bearer Token).
+  - Registration and login using JWT (Bearer Token).
   - Role-based access (User, Admin).
 
 ### **Admin Features**
