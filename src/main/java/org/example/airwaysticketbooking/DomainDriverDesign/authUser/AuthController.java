@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.airwaysticketbooking.DomainDriverDesign.securityConfig.JwtResponseDTO;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,9 +22,10 @@ public class AuthController {
     private final UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@Valid @RequestBody UserRegisterDTO userRegisterDTO) {
-        userService.registerUser(userRegisterDTO);
-        return ResponseEntity.status(201).build();
+
+    public ResponseEntity<AuthUserResponseDTO> register(@Valid @RequestBody UserRegisterDTO userRegisterDTO) {
+        AuthUserResponseDTO responseDTO = userService.registerUser(userRegisterDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(responseDTO);
     }
 
     @PostMapping("/login")

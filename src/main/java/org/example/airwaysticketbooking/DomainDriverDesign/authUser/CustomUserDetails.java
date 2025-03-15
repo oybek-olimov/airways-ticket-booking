@@ -22,15 +22,15 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        Set<AuthRole> roles = authUser.getRoles();
+        Set<Role> roles = authUser.getAuthRoles();
 
         if(roles == null){
             return Collections.emptyList();
         }
         Set<GrantedAuthority> authorities = new HashSet<>();
 
-        for (AuthRole role : roles) {
-            authorities.add(new SimpleGrantedAuthority("ROLE_"+role.getRoleName()));
+        for (Role role : roles) {
+            authorities.add(new SimpleGrantedAuthority("ROLE_"+role.getName()));
         }
         return authorities;
     }

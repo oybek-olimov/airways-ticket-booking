@@ -42,6 +42,6 @@ public class UserProfile {
     @Column(nullable = false)
     private String address;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "TEXT DEFAULT 'default.jpg'")
     private String profilePicturePath;
 }

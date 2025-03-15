@@ -5,7 +5,7 @@ import org.example.airwaysticketbooking.DomainDriverDesign.securityConfig.JwtRes
 
 public interface UserService {
 
-    String registerUser(@Valid UserRegisterDTO userRegisterDTO);
+    AuthUserResponseDTO registerUser(@Valid UserRegisterDTO userRegisterDTO);
 
     JwtResponseDTO loginUser(@Valid UserLoginDTO userLoginDTO);
 }

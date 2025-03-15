@@ -18,7 +18,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public String registerUser(UserRegisterDTO userRegisterDTO) {
+    public AuthUserResponseDTO registerUser(UserRegisterDTO userRegisterDTO) {
         if (userRepository.existsByEmail(userRegisterDTO.getEmail())) {
             throw new IllegalArgumentException("Email already exists");
         }
@@ -36,7 +36,8 @@ public class UserServiceImpl implements UserService {
         profile.setAddress(userRegisterDTO.getAddress());
         userProfileRepository.save(profile);
 
-        return jwtUtil.generateToken(authUser.getEmail());
+        jwtUtil.generateToken(authUser.getEmail());
+        return new AuthUserResponseDTO(authUser.getId(), profile.getFirstName() + " " + profile.getLastName(), authUser.getEmail());
 
     }
 

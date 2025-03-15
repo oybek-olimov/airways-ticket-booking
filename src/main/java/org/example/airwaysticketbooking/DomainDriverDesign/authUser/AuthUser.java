@@ -1,6 +1,5 @@
 package org.example.airwaysticketbooking.DomainDriverDesign.authUser;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -17,29 +16,31 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
-@AllArgsConstructor
-@Entity
+@AllArgsConstructor@Entity
 @Table(name = "users")
 public class AuthUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true, nullable = false)
     private String email;
 
     @Column(nullable = false)
     private String password;
 
-
-    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<AuthRole> roles;
-
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> authRoles = new HashSet<>();
 }
